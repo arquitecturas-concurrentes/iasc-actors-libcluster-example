@@ -2,7 +2,7 @@
 
 Este es un ejemplo simple del manejo de un claster en Elixir usando Libcluster. Con algunos supervisores y procesos por ahí para jugar y probar cosas :D
 
-[](https://i.pinimg.com/originals/20/28/f1/2028f1b830ded1228fa0d3c48919e3a4.gif)
+![](https://i.pinimg.com/originals/20/28/f1/2028f1b830ded1228fa0d3c48919e3a4.gif)
 
 ## Installation
 
