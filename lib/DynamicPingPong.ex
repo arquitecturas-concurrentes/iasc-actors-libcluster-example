@@ -8,6 +8,7 @@ defmodule DynamicPingPong do
   end
 
   def init(state) do
+      PingPongRegistry.registrar_ping_pong(:ping_pong, self())
       {:ok, state}
   end
 

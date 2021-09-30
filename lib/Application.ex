@@ -13,7 +13,8 @@ defmodule LibclusterExample do
     children = [
       {Cluster.Supervisor, [topologies, [name: MyApp.ClusterSupervisor]]},
       PingPongSupervisor,
-      %{id: PingPongDynamicSupervisor, start: {PingPongDynamicSupervisor, :start_link, [[]]} }
+      %{id: PingPongDynamicSupervisor, start: {PingPongDynamicSupervisor, :start_link, [[]]} },
+      RegistrySupervisor
     ]
 
     opts = [strategy: :one_for_one, name: MyApp.Supervisor]
