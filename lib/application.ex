@@ -12,14 +12,16 @@ defmodule LibclusterExample do
     ]
     children = [
       {Cluster.Supervisor, [topologies, [name: MyApp.ClusterSupervisor]]},
-      PingPongSupervisor
+      PingPongSupervisor,
+      %{id: PingPongDynamicSupervisor, start: {PingPongDynamicSupervisor, :start_link, [[]]} }
     ]
 
     opts = [strategy: :one_for_one, name: MyApp.Supervisor]
     Supervisor.start_link(children, opts)
   end
-  #iex --name a@127.0.0.1 -S mix
-  #iex --name b@127.0.0.1 -S mix
-  #haciendo el start de esta forma, los nodos se conectan automaticamente y levanta una app con todos sus childs en cada nodo, es decir, replica...
-  #usando Cluster.Strategy.Epmd 
 end
+
+#iex --name a@127.0.0.1 -S mix
+#iex --name b@127.0.0.1 -S mix
+#haciendo el start de esta forma, los nodos se conectan automaticamente y levanta una app con todos sus childs en cada nodo, es decir, replica...
+#usando Cluster.Strategy.Epmd

@@ -1,10 +1,10 @@
-defmodule PingPong do
+defmodule DynamicPingPong do
   use GenServer
 
   #---------------- Servidor ------------------#
 
   def start_link(state)do
-    GenServer.start_link(__MODULE__, state, name: PingPong)
+    GenServer.start_link(__MODULE__, state)
   end
 
   def init(state) do
@@ -25,12 +25,12 @@ defmodule PingPong do
 
   #---------------- Cliente ------------------#
 
-  def ping() do
-    GenServer.call(PingPong, :ping)
+  def ping(pid) do
+    GenServer.call(pid, :ping)
   end
 
 end
 
-#GenServer.cast(PingPong,{:push, :soy_un_estado})
-#GenServer.call(PingPong, :get)
-#GenServer.call({PingPong, :"b@127.0.0.1"}, :get)
+#GenServer.cast(pid,{:push, :soy_un_estado})
+#GenServer.call(pid, :get)
+#GenServer.call({pid, :"b@127.0.0.1"}, :get)
