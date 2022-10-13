@@ -11,7 +11,7 @@ defmodule LibclusterExample do
       ]
     ]
     children = [
-      {Cluster.Supervisor, [topologies, [name: MyApp.ClusterSupervisor]]},
+      {Cluster.Supervisor, [topologies, [name: MyApp.ClusterSupervisor]]}, #libcluster
       PingPongSupervisor,
       %{id: PingPongDynamicSupervisor, start: {PingPongDynamicSupervisor, :start_link, [[]]} },
       RegistrySupervisor
