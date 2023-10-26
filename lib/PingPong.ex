@@ -33,4 +33,5 @@ end
 
 #GenServer.cast(PingPong,{:push, :soy_un_estado})
 #GenServer.call(PingPong, :get)
-#GenServer.call({PingPong, :"b@127.0.0.1"}, :get)
+#GenServer.call({PingPong, :"a@127.0.0.1"}, :get)
+#GenServer.call({PingPong, :"b@127.0.0.1"}, :ping)

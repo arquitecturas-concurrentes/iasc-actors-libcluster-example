@@ -5,13 +5,12 @@ defmodule PingPongRegistry do
         id: __MODULE__,
         start: {__MODULE__, :start_link, [opts]},
         type: :worker,
-        restart: :permanent,
-        shutdown: 500
+        restart: :permanent
       }
     end
 
   def start_link(_state) do
-    Registry.start_link(keys: :duplicate, name: __MODULE__)
+    Registry.start_link(keys: :unique, name: __MODULE__)
   end
 
   def registrar_ping_pong(key, pid) do
