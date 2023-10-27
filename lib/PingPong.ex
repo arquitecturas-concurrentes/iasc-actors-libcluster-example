@@ -3,8 +3,8 @@ defmodule PingPong do
 
   #---------------- Servidor ------------------#
 
-  def start_link(state)do
-    GenServer.start_link(__MODULE__, state, name: PingPong)
+  def start_link(state, name)do
+    GenServer.start_link(__MODULE__, state, name: name)
   end
 
   def init(state) do

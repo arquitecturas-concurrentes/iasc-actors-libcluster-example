@@ -7,7 +7,8 @@ defmodule PingPongSupervisor do
 
   def init(_init_arg) do
     children = [
-      {PingPong, []}
+      %{id: PingPong, start: {PingPong, :start_link, [[], PingPong]}, restart: :transient},
+      %{id: PingPong2,  start: {PingPong, :start_link, [[], PingPong2]}, restart: :transient}
     ]
 
     Supervisor.init(children, strategy: :one_for_one)
