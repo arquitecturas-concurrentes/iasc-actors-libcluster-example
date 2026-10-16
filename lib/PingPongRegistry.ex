@@ -17,13 +17,17 @@ defmodule PingPongRegistry do
     Registry.register(__MODULE__, key, pid)
   end
 
-  def get_ping_pongs(key) do
-    Registry.lookup(__MODULE__, key)
+  def get_ping_pongs() do
+    Registry.select(__MODULE__, [{{:"$1", :"$2", :_}, [], [{{:"$1", :"$2"}}]}])
+  end
+
+  def get_ping_pong(id) do
+    Registry.lookup(__MODULE__, id)
   end
 
 end
 
-#PingPongRegistry.get_ping_pongs(:ping_pong)
-#Enum.map(pids, fn({pid, _}) -> GenServer.call(pid, :get) end)
-#Enum.each(pids, fn({pid, _}) -> GenServer.cast(pid,{:push, :soy_un_estado_loco}) end)
-#:rpc.call(:"a@127.0.0.1", PingPongRegistry, :get_ping_pongs, [:ping_pong]) #desde el nodo b
+#pids = PingPongRegistry.get_ping_pongs()
+#Enum.map(pids, fn({_id, pid}) -> GenServer.call(pid, :get) end)
+#Enum.each(pids, fn({_id, pid}) -> GenServer.cast(pid,{:push, :soy_un_estado_loco}) end)
+#:rpc.call(:"b@127.0.0.1", PingPongRegistry, :get_ping_pongs, []) #desde el nodo B

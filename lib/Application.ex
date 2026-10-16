@@ -7,11 +7,14 @@ defmodule LibclusterExample do
     topologies = [
       myapp: [
         strategy: Cluster.Strategy.Epmd,
-        config: [hosts: [:"a@127.0.0.1", :"b@127.0.0.1"]],
+        config: [hosts: [:"a@127.0.0.1"]],
       ]
     ]
+
     children = [
       {Cluster.Supervisor, [topologies, [name: MyApp.ClusterSupervisor]]}, #libcluster
+
+
       PingPongSupervisor,
       %{id: PingPongDynamicSupervisor, start: {PingPongDynamicSupervisor, :start_link, [[]]} },
       RegistrySupervisor
