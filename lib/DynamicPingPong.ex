@@ -4,11 +4,12 @@ defmodule DynamicPingPong do
   #---------------- Servidor ------------------#
 
   def start_link(state)do
-    GenServer.start_link(__MODULE__, state)
+    id = System.unique_integer([:positive, :monotonic])
+    GenServer.start_link(__MODULE__, %{id: id, data: state})
   end
 
   def init(state) do
-      PingPongRegistry.registrar_ping_pong(:ping_pong, self())
+      {:ok, _} = PingPongRegistry.registrar_ping_pong(state.id, self())
       {:ok, state}
   end
 
@@ -20,8 +21,8 @@ defmodule DynamicPingPong do
     {:reply, state, state}
   end
 
-  def handle_cast({:push, state}, _old_state) do
-    {:noreply, state}
+  def handle_cast({:push, data}, state) do
+    {:noreply, %{state | data: data}}
   end
 
   #---------------- Cliente ------------------#

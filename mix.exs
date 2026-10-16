@@ -4,8 +4,8 @@ defmodule LibclusterExample.MixProject do
   def project do
     [
       app: :libcluster_example,
-      version: "0.1.0",
-      elixir: "~> 1.12",
+      version: "0.1.1",
+      elixir: "~> 1.20",
       start_permanent: Mix.env() == :prod,
       deps: deps()
     ]
@@ -22,7 +22,7 @@ defmodule LibclusterExample.MixProject do
   # Run "mix help deps" to learn about dependencies.
   defp deps do
     [
-      {:libcluster, "~> 3.3"}
+      {:libcluster, "~> 3.5"}
     ]
   end
 end
